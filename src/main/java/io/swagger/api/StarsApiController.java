@@ -30,21 +30,25 @@ public class StarsApiController implements StarsApi {
 
     public ResponseEntity<List<String>> starsGet() {
         final List<String> starNames = new ArrayList<>(stars.keySet());
+        System.out.println("starsGet called");
         return new ResponseEntity<List<String>>(starNames, HttpStatus.OK);
     }
 
     public ResponseEntity<InlineResponse200> starsPost(@ApiParam(value = "" ,required=true ) @RequestBody StarDetails starDetails) {
         stars.put(starDetails.getStarName(), starDetails);
+        System.out.println("starsPost called");
         return new ResponseEntity<InlineResponse200>(HttpStatus.OK);
     }
 
     public ResponseEntity<String> starsStarIdDelete(@ApiParam(value = "ID of star to fetch",required=true ) @PathVariable("starId") String starId) {
         stars.remove(starId);
+        System.out.println("starsStarIdDelete called");
         return new ResponseEntity<String>(HttpStatus.OK);
     }
 
     public ResponseEntity<String> starsStarIdGet(@ApiParam(value = "ID of star to fetch",required=true ) @PathVariable("starId") String starId) {
         stars.get(starId).toString();
+        System.out.println("starsStarIdGet called");
         return new ResponseEntity<String>(HttpStatus.OK);
     }
 
